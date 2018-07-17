@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ASP_testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Execute" Relationship="ASP_testModel.FK_Execute_Department" FromRole="Department" ToRole="Execute" />
+    <NavigationProperty Name="Teacher" Relationship="ASP_testModel.FK_Teacher_Department" FromRole="Department" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Teacher_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Teacher" Relationship="ASP_testModel.FK_Teacher_Teacher_type" FromRole="Teacher_type" ToRole="Teacher" />
+  </EntityType>
+  <EntityContainer Name="ASP_testEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Department" EntityType="Self.Department" />
+    <EntitySet Name="Teacher_type" EntityType="Self.Teacher_type" />
+    <EntitySet Name="Execute" EntityType="ASP_testModel.Execute" />
+    <AssociationSet Name="FK_Execute_Department" Association="ASP_testModel.FK_Execute_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Execute" EntitySet="Execute" />
+    </AssociationSet>
+    <EntitySet Name="Result" EntityType="ASP_testModel.Result" />
+    <AssociationSet Name="FK_Result_Execute" Association="ASP_testModel.FK_Result_Execute">
+      <End Role="Execute" EntitySet="Execute" />
+      <End Role="Result" EntitySet="Result" />
+    </AssociationSet>
+    <EntitySet Name="Proposal_type" EntityType="ASP_testModel.Proposal_type" />
+    <EntitySet Name="Jointly" EntityType="ASP_testModel.Jointly" />
+    <EntitySet Name="Proposal" EntityType="ASP_testModel.Proposal" />
+    <EntitySet Name="Teacher" EntityType="ASP_testModel.Teacher" />
+    <AssociationSet Name="FK_Teacher_Department" Association="ASP_testModel.FK_Teacher_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Execute_Proposal" Association="ASP_testModel.FK_Execute_Proposal">
+      <End Role="Proposal" EntitySet="Proposal" />
+      <End Role="Execute" EntitySet="Execute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jointly_Proposal" Association="ASP_testModel.FK_Jointly_Proposal">
+      <End Role="Proposal" EntitySet="Proposal" />
+      <End Role="Jointly" EntitySet="Jointly" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proposal_Proposal_type" Association="ASP_testModel.FK_Proposal_Proposal_type">
+      <End Role="Proposal_type" EntitySet="Proposal_type" />
+      <End Role="Proposal" EntitySet="Proposal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proposal_Teacher" Association="ASP_testModel.FK_Proposal_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Proposal" EntitySet="Proposal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Teacher_type" Association="ASP_testModel.FK_Teacher_Teacher_type">
+      <End Role="Teacher_type" EntitySet="Teacher_type" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Execute">
+    <Key>
+      <PropertyRef Name="proposal" />
+    </Key>
+    <Property Name="proposal" Type="Int32" Nullable="false" />
+    <Property Name="department" Type="Int32" />
+    <Property Name="register" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Department1" Relationship="ASP_testModel.FK_Execute_Department" FromRole="Execute" ToRole="Department" />
+    <NavigationProperty Name="Result" Relationship="ASP_testModel.FK_Result_Execute" FromRole="Execute" ToRole="Result" />
+    <NavigationProperty Name="Proposal1" Relationship="ASP_testModel.FK_Execute_Proposal" FromRole="Execute" ToRole="Proposal" />
+  </EntityType>
+  <Association Name="FK_Execute_Department">
+    <End Type="ASP_testModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="ASP_testModel.Execute" Role="Execute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Execute">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="proposal" />
+    </Key>
+    <Property Name="proposal" Type="Int32" Nullable="false" />
+    <Property Name="acceptance" Type="Int32" Nullable="false" />
+    <Property Name="result1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="opinion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Execute" Relationship="ASP_testModel.FK_Result_Execute" FromRole="Result" ToRole="Execute" />
+  </EntityType>
+  <Association Name="FK_Result_Execute">
+    <End Type="ASP_testModel.Execute" Role="Execute" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ASP_testModel.Result" Role="Result" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Execute">
+        <PropertyRef Name="proposal" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="proposal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Proposal_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proposal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Proposal1" Relationship="ASP_testModel.FK_Proposal_Proposal_type" FromRole="Proposal_type" ToRole="Proposal" />
+  </EntityType>
+  <EntityType Name="Jointly">
+    <Key>
+      <PropertyRef Name="proposal" />
+    </Key>
+    <Property Name="proposal" Type="Int32" Nullable="false" />
+    <Property Name="teacher" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Proposal1" Relationship="ASP_testModel.FK_Jointly_Proposal" FromRole="Jointly" ToRole="Proposal" />
+  </EntityType>
+  <EntityType Name="Proposal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="teacher_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Execute" Relationship="ASP_testModel.FK_Execute_Proposal" FromRole="Proposal" ToRole="Execute" />
+    <NavigationProperty Name="Jointly" Relationship="ASP_testModel.FK_Jointly_Proposal" FromRole="Proposal" ToRole="Jointly" />
+    <NavigationProperty Name="Proposal_type" Relationship="ASP_testModel.FK_Proposal_Proposal_type" FromRole="Proposal" ToRole="Proposal_type" />
+    <NavigationProperty Name="Teacher" Relationship="ASP_testModel.FK_Proposal_Teacher" FromRole="Proposal" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="account" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="Int32" Nullable="false" />
+    <Property Name="department" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department1" Relationship="ASP_testModel.FK_Teacher_Department" FromRole="Teacher" ToRole="Department" />
+    <NavigationProperty Name="Proposal" Relationship="ASP_testModel.FK_Proposal_Teacher" FromRole="Teacher" ToRole="Proposal" />
+    <NavigationProperty Name="Teacher_type" Relationship="ASP_testModel.FK_Teacher_Teacher_type" FromRole="Teacher" ToRole="Teacher_type" />
+  </EntityType>
+  <Association Name="FK_Teacher_Department">
+    <End Type="ASP_testModel.Department" Role="Department" Multiplicity="1" />
+    <End Type="ASP_testModel.Teacher" Role="Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Execute_Proposal">
+    <End Type="ASP_testModel.Proposal" Role="Proposal" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ASP_testModel.Execute" Role="Execute" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Proposal">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Execute">
+        <PropertyRef Name="proposal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jointly_Proposal">
+    <End Type="ASP_testModel.Proposal" Role="Proposal" Multiplicity="1" />
+    <End Type="ASP_testModel.Jointly" Role="Jointly" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Proposal">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Jointly">
+        <PropertyRef Name="proposal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proposal_Proposal_type">
+    <End Type="ASP_testModel.Proposal_type" Role="Proposal_type" Multiplicity="1" />
+    <End Type="ASP_testModel.Proposal" Role="Proposal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proposal_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Proposal">
+        <PropertyRef Name="type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proposal_Teacher">
+    <End Type="ASP_testModel.Teacher" Role="Teacher" Multiplicity="1" />
+    <End Type="ASP_testModel.Proposal" Role="Proposal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Proposal">
+        <PropertyRef Name="teacher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Teacher_type">
+    <End Type="ASP_testModel.Teacher_type" Role="Teacher_type" Multiplicity="1" />
+    <End Type="ASP_testModel.Teacher" Role="Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

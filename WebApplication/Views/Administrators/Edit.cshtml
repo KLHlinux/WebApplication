@@ -1,0 +1,43 @@
+﻿@model WebApplication.Models.Execute
+
+@{
+    ViewBag.Title = "审核";
+    Layout = "~/Views/Shared/Administrators_Layout.cshtml";
+}
+
+<div>
+    <br />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.proposal)
+    <div class="row">
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            选择处理部门:&nbsp;@Html.DropDownList("department", ViewBag.NameList as IEnumerable<SelectListItem>,"")
+        </div>
+        <br />
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    标题 :&nbsp;@Html.DisplayFor(model => model.Proposal1.title)&nbsp;&nbsp;&nbsp;&nbsp;
+                    提案人:&nbsp;@Html.DisplayFor(model => model.Proposal1.Teacher.username)&nbsp;&nbsp;&nbsp;&nbsp;
+                    联名人:&nbsp;@ViewData["jointly"]
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.Proposal1.content)
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="panel-footer">
+                    立案与否:&nbsp;@Html.DropDownListFor(model => model.register, ViewData["Reg"] as IEnumerable<SelectListItem>)
+                    &nbsp;&nbsp;
+                    附言:&nbsp;@Html.EditorFor(model => model.content)
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="保存" name="submit" />
+    <input type="submit" value="返回" name="submit" />
+}
+</div>

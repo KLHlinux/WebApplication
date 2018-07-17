@@ -1,0 +1,51 @@
+﻿@model WebApplication.Models.Proposal
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm("Create", "Teacher", FormMethod.Post))
+    {
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="sub-title">类型:</div>
+                    @Html.DropDownListFor(model => model.type, ViewBag.ProposalList as IEnumerable<SelectListItem>, new { @class = "form-control ,control-label col-md-2" })
+                </div>
+             </div>
+
+            <div class="row">
+                <div class="col-md-6 column">
+                    <div class="sub-title">提案标题:</div>
+                    <div>
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="sub-title">内容:</div>
+                    <div>
+                        @Html.TextAreaFor(model => model.content, 5, 20, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="sub-title">提案联名人:</div>
+                    @Html.DropDownList("value1", ViewBag.NameList as IEnumerable<SelectListItem>, "",new { @class = "form-control ,control-label" })<br />
+                    
+                    @Html.DropDownList("value2", ViewBag.NameList as IEnumerable<SelectListItem>, "", new { @class = "form-control ,control-label" })<br />
+                    
+                    @Html.DropDownList("value3", ViewBag.NameList as IEnumerable<SelectListItem>, "", new { @class = "form-control ,control-label" })<br />
+                    
+                    @*<input type="text" value="" name="value1" />
+                        <input type="text" value="" name="value2"/>
+                        <input type="text" value="" name="value3" />*@
+                </div>
+            </div>
+
+            <br />
+            <div>
+                <input type="submit" value="提交" />
+            </div>
+    }
+</div>

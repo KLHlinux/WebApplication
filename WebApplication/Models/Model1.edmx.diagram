@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12e6f64cf2374de1834b4fc691aa73b9" Name="Diagram1">
+        <EntityTypeShape EntityType="ASP_testModel.Department" Width="1.5" PointX="1.875" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASP_testModel.Teacher_type" Width="1.5" PointX="1.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASP_testModel.Execute" Width="1.5" PointX="11.375" PointY="4.625" />
+        <AssociationConnector Association="ASP_testModel.FK_Execute_Department" />
+        <EntityTypeShape EntityType="ASP_testModel.Result" Width="1.5" PointX="13.625" PointY="4.875" />
+        <AssociationConnector Association="ASP_testModel.FK_Result_Execute" />
+        <EntityTypeShape EntityType="ASP_testModel.Proposal_type" Width="1.5" PointX="10.5" PointY="2.25" />
+        <EntityTypeShape EntityType="ASP_testModel.Jointly" Width="1.5" PointX="7.625" PointY="0.875" />
+        <EntityTypeShape EntityType="ASP_testModel.Proposal" Width="1.5" PointX="8" PointY="3.25" />
+        <EntityTypeShape EntityType="ASP_testModel.Teacher" Width="1.5" PointX="5" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="ASP_testModel.FK_Teacher_Department" />
+        <AssociationConnector Association="ASP_testModel.FK_Execute_Proposal" />
+        <AssociationConnector Association="ASP_testModel.FK_Jointly_Proposal" />
+        <AssociationConnector Association="ASP_testModel.FK_Proposal_Proposal_type" />
+        <AssociationConnector Association="ASP_testModel.FK_Proposal_Teacher" />
+        <AssociationConnector Association="ASP_testModel.FK_Teacher_Teacher_type" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

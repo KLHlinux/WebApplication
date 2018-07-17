@@ -1,0 +1,30 @@
+﻿@model WebApplication.Models.Result
+@{
+    ViewBag.Title= "编写执行结果";
+    Layout = "~/Views/Shared/Department_Layout.cshtml";
+}
+
+
+<div>
+        <div class="row">
+             <div class="col-md-6 column">
+                 <div class="sub-title">提案标题:</div>
+                 <div>
+                    @Html.DisplayFor(model => model.Execute.Proposal1.title)
+                 </div>
+                 <div class="sub-title">执行结果:</div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.HiddenFor(model => model.proposal)
+                        <div>
+                            @Html.TextAreaFor(model => model.result1, 5, 20, new { @class = "form-control" })
+                        </div>
+                        <br />
+                        <div>
+                            <input type="submit" value="返回" name="submit" />
+                            <input type="submit" value="保存" name="submit" />
+                        </div>
+                    }
+             </div>
+        </div>
+</div>

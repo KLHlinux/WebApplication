@@ -1,0 +1,30 @@
+﻿@model WebApplication.Models.Result
+@{
+    ViewBag.Title= "审核";
+    Layout = "~/Views/Shared/Department_Layout.cshtml";
+}
+
+<div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    标题 :&nbsp;@Html.DisplayFor(model => model.Execute.Proposal1.title)&nbsp;&nbsp;&nbsp;&nbsp;
+                    提案人:&nbsp;@Html.DisplayFor(model => model.Execute.Proposal1.Teacher.username)
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.Execute.Proposal1.content)
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="panel-footer">
+                    @Html.ActionLink("受理", "AC", new { proposal = Model.proposal })  |
+                    @Html.ActionLink("不受理", "nAC", new { proposal = Model.proposal }) |
+                    <a href="javascript:history.back()">返回</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

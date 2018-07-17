@@ -1,0 +1,87 @@
+﻿@model WebApplication.Models.Proposal
+
+@{
+    ViewBag.Title = "提案内容";
+    Layout = "~/Views/Shared/Department_Layout.cshtml";
+}
+
+<div>
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    标题 :&nbsp;&nbsp;@Html.DisplayFor(model => model.title)
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#1" data-toggle="tab">内容</a>
+                        </li>
+                        <li class="">
+                            <a href="#2" data-toggle="tab">执行结果</a>
+                        </li>
+                        <li class="">
+                            <a href="#3" data-toggle="tab">附言</a>
+                        </li>
+                        <li class="">
+                            <a href="#4" data-toggle="tab">联名人</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="1">
+                            <p>@Html.DisplayFor(model => model.content)</p>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div class="tab-pane fade" id="2">
+                            <p>
+                                @if (Model.Execute.register == 1 && Model.Execute.Result.result1 != null)
+                                {
+                                    @:@Html.DisplayFor(model => model.Execute.Result.result1)
+                                }
+                                else
+                                {
+                                    @:暂无处理结果
+                                }
+                            </p>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div class="tab-pane fade" id="3">
+                            <p>
+                                @if (Model.Execute.content != null)
+                                {
+                                    @:@Html.DisplayFor(model => model.Execute.content)
+                                }
+                                else
+                                {
+                                    @:暂无附言
+                                }
+                            </p>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div class="tab-pane fade" id="4">
+                            <p>@ViewData["jointly"]</p>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="javascript:history.back()">返回</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

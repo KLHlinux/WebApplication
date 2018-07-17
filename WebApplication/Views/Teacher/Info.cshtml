@@ -1,0 +1,53 @@
+﻿@model WebApplication.Models.Teacher
+
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+<div class="row">
+
+    <div class="col-md-1">
+        <img src="~/resource/assets/img/t013e99b9e9c5132967.png" alt="用户信息" height="100" width="100" style="border:1px solid #000;" >
+    </div> 
+
+    <div class="col-md-2">
+        <div>
+            编号:
+            @Html.DisplayFor(model => model.id)
+        </div>
+        <br />
+        <div>
+            名称:
+            @Html.DisplayFor(model => model.username)
+        </div>
+        <br />
+        <div>
+            账号:
+            @Html.DisplayFor(model => model.account)
+        </div>
+        <br />
+    </div>
+
+    <div class="col-md-2">
+        @*<div>
+            密码:
+            @Html.DisplayFor(model => model.password)
+        </div>
+        <br />*@
+        <div>
+            类型:
+            @Html.DisplayFor(model => model.Teacher_type.name)
+        </div>
+        <br />
+        <div>
+            部门:
+            @Html.DisplayFor(model => model.Department1.name)
+        </div>
+        <br />
+    </div>      
+
+
+</div>

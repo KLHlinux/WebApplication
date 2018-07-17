@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="" name="description" />
+    <meta content="webthemez" name="author" />
+    <title>教师登录</title>
+    <!-- Bootstrap Styles-->
+    <link href="~/resource/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="~/resource/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/resource/assets/css/custom-styles.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Teacher/Index"><strong><i class="icon fa fa-plane"></i> 提案信息系统</strong></a>
+                <div id="sideNav" href="">
+                    <i class="fa fa-bars icon"></i>
+                </div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="/Teacher/Info"><i class="fa fa-user fa-fw"></i> 用户信息</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/Login/Index"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav side-navigation faq-tabbable" id="main-menu">
+                    <li><a href="/Teacher/Index"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li><a href="/Teacher/Create"><i class="fa fa-desktop"></i> 提案登记</a></li>
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap"></i> 浏览提案<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/Teacher/Browse_F"> 待审提案</a></li>
+                            <li><a href="/Teacher/Browse_T"> 已审提案</a></li>
+                            <li><a href="/Teacher/Browse"> 我的提案</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-table"></i> 公告</a></li>
+                    <li><a href="#"><i class="fa fa-file"></i> 文件下载</a></li>
+                    <li><a href="/Teacher/About"><i class="fa fa-fw fa-edit"></i> 关于网站</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div class="header" >
+                <h1 class="page-header">
+                    @ViewBag.Title <small>Create new page.</small>
+                </h1>
+                @RenderBody()
+            </div>
+            <div id="page-inner">
+                <footer><p>Copyright &copy; 2018.Company name All rights reserved.</p></footer>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="~/resource/assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="~/resource/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="~/resource/assets/js/jquery.metisMenu.js"></script>
+    <!-- Custom Js -->
+    <script src="~/resource/assets/js/custom-scripts.js"></script>
+
+</body>
+</html>
+
+
+
+

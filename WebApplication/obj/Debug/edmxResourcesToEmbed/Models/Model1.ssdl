@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ASP_testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Execute">
+    <Key>
+      <PropertyRef Name="proposal" />
+    </Key>
+    <Property Name="proposal" Type="int" Nullable="false" />
+    <Property Name="department" Type="int" />
+    <Property Name="register" Type="int" Nullable="false" />
+    <Property Name="content" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Jointly">
+    <Key>
+      <PropertyRef Name="proposal" />
+    </Key>
+    <Property Name="proposal" Type="int" Nullable="false" />
+    <Property Name="teacher" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Proposal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="teacher_id" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="content" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Proposal_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proposal" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="proposal" />
+    </Key>
+    <Property Name="proposal" Type="int" Nullable="false" />
+    <Property Name="acceptance" Type="int" Nullable="false" />
+    <Property Name="result" Type="nvarchar" MaxLength="50" />
+    <Property Name="opinion" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="account" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="int" Nullable="false" />
+    <Property Name="department" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Execute_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Execute" Type="Self.Execute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Execute">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Execute_Proposal">
+    <End Role="Proposal" Type="Self.Proposal" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Execute" Type="Self.Execute" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Proposal">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Execute">
+        <PropertyRef Name="proposal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jointly_Proposal">
+    <End Role="Proposal" Type="Self.Proposal" Multiplicity="1" />
+    <End Role="Jointly" Type="Self.Jointly" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Proposal">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Jointly">
+        <PropertyRef Name="proposal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proposal_Proposal_type">
+    <End Role="Proposal_type" Type="Self.Proposal_type" Multiplicity="1" />
+    <End Role="Proposal" Type="Self.Proposal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proposal_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Proposal">
+        <PropertyRef Name="type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proposal_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Proposal" Type="Self.Proposal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Proposal">
+        <PropertyRef Name="teacher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Result_Execute">
+    <End Role="Execute" Type="Self.Execute" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Result" Type="Self.Result" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Execute">
+        <PropertyRef Name="proposal" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="proposal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Teacher_type">
+    <End Role="Teacher_type" Type="Self.Teacher_type" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ASP_testModelStoreContainer">
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Execute" EntityType="Self.Execute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Jointly" EntityType="Self.Jointly" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proposal" EntityType="Self.Proposal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proposal_type" EntityType="Self.Proposal_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher_type" EntityType="Self.Teacher_type" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Execute_Department" Association="Self.FK_Execute_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Execute" EntitySet="Execute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Execute_Proposal" Association="Self.FK_Execute_Proposal">
+      <End Role="Proposal" EntitySet="Proposal" />
+      <End Role="Execute" EntitySet="Execute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jointly_Proposal" Association="Self.FK_Jointly_Proposal">
+      <End Role="Proposal" EntitySet="Proposal" />
+      <End Role="Jointly" EntitySet="Jointly" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proposal_Proposal_type" Association="Self.FK_Proposal_Proposal_type">
+      <End Role="Proposal_type" EntitySet="Proposal_type" />
+      <End Role="Proposal" EntitySet="Proposal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proposal_Teacher" Association="Self.FK_Proposal_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Proposal" EntitySet="Proposal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Result_Execute" Association="Self.FK_Result_Execute">
+      <End Role="Execute" EntitySet="Execute" />
+      <End Role="Result" EntitySet="Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Department" Association="Self.FK_Teacher_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Teacher_type" Association="Self.FK_Teacher_Teacher_type">
+      <End Role="Teacher_type" EntitySet="Teacher_type" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

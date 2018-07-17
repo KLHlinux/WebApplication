@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ASP_testModelStoreContainer" CdmEntityContainer="ASP_testEntities2">
+    <EntitySetMapping Name="Department">
+      <EntityTypeMapping TypeName="ASP_testModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teacher_type">
+      <EntityTypeMapping TypeName="ASP_testModel.Teacher_type">
+        <MappingFragment StoreEntitySet="Teacher_type">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Execute">
+      <EntityTypeMapping TypeName="ASP_testModel.Execute">
+        <MappingFragment StoreEntitySet="Execute">
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="register" ColumnName="register" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="proposal" ColumnName="proposal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Result">
+      <EntityTypeMapping TypeName="ASP_testModel.Result">
+        <MappingFragment StoreEntitySet="Result">
+          <ScalarProperty Name="opinion" ColumnName="opinion" />
+          <ScalarProperty Name="result1" ColumnName="result" />
+          <ScalarProperty Name="acceptance" ColumnName="acceptance" />
+          <ScalarProperty Name="proposal" ColumnName="proposal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proposal_type">
+      <EntityTypeMapping TypeName="ASP_testModel.Proposal_type">
+        <MappingFragment StoreEntitySet="Proposal_type">
+          <ScalarProperty Name="proposal" ColumnName="proposal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jointly">
+      <EntityTypeMapping TypeName="ASP_testModel.Jointly">
+        <MappingFragment StoreEntitySet="Jointly">
+          <ScalarProperty Name="teacher" ColumnName="teacher" />
+          <ScalarProperty Name="proposal" ColumnName="proposal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proposal">
+      <EntityTypeMapping TypeName="ASP_testModel.Proposal">
+        <MappingFragment StoreEntitySet="Proposal">
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teacher">
+      <EntityTypeMapping TypeName="ASP_testModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
